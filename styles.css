@@ -24,7 +24,7 @@ div {
 .btns {
     background-color: #2667e1;
     display: flex;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
     height: 20px;
