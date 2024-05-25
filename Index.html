@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H.H Mahant Swami Maharaj</title>
+    <link rel="icon" href="H.H-MS.jpg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<h2>H.H Mahant Swami Maharaj</h2>
+<h2>Puja Darshan</h2>
+
+<div id="button-container" class="button-container">
+    <button onclick="logTime('Arrived time', 'arrived-time')" aria-label="Log Arrived Time">Arrived Time</button>
+    <div id="arrived-time"></div>
+
+    <button onclick="logTime('Tilak', 'tilak')" aria-label="Log Tilak Time">Tilak</button>
+    <div id="tilak"></div>
+
+    <button onclick="logTime('Chandalo', 'chandalo')" aria-label="Log Chandalo Time">Chandalo</button>
+    <div id="chandalo"></div>
+
+    <button onclick="logTime('Dhyan', 'dhyan')" aria-label="Log Dhyan Time">Dhyan</button>
+    <div id="dhyan"></div>
+
+    <button onclick="logTime('Mala', 'mala')" aria-label="Log Mala Time">Mala</button>
+    <div id="mala"></div>
+
+    <button onclick="logTime('Thal', 'thal')" aria-label="Log Thal Time">Thal</button>
+    <div id="thal"></div>
+
+    <button onclick="logTime('Prasadi', 'prasadi')" aria-label="Log Prasadi Time">Prasadi</button>
+    <div id="prasadi"></div>
+
+    <button onclick="logTime('Thakorji', 'thakorji')" aria-label="Log Thakorji Time">Thakorji</button>
+    <div id="thakorji"></div>
+
+    <button onclick="logTime('Darshan', 'darshan')" aria-label="Log Darshan Time">Darshan</button>
+    <div id="darshan"></div>
+
+    <button onclick="logTime('Sikshapatri', 'sikshapatri')" aria-label="Log Sikshapatri Time">Sikshapatri</button>
+    <div id="sikshapatri"></div>
+    <hr><hr>
+
+    <h2>Thakorji Vagha and Sihasahn</h2>
+    <textarea id="thakorji-vagha-input" placeholder="Enter Your Text" aria-label="Thakorji Vagha and Sihasahn"></textarea>
+    <button onclick="logText('Thakorji Vagha and Sihasahn', 'thakorji-vagha', 'thakorji-vagha-input')" aria-label="Save Thakorji Vagha and Sihasahn">Save</button>
+    <div id="thakorji-vagha"></div>
+
+    <h2>Which Kirtan Sung</h2>
+    <textarea id="kirtan-input" placeholder="Enter Your Text" aria-label="Which Kirtan Sung"></textarea>
+    <button onclick="logText('Which Kirtan Sung', 'kirtan', 'kirtan-input')" aria-label="Save Which Kirtan Sung">Save</button>
+    <div id="kirtan"></div>
+
+    <h2>Special Notes</h2>
+    <textarea id="special-notes-input" placeholder="Enter Your Text" aria-label="Special Notes"></textarea>
+    <button onclick="logText('Special Notes', 'special-notes', 'special-notes-input')" aria-label="Save Special Notes">Save</button>
+    <div id="special-notes"></div>
+</div>
+
+<div id="events-log" class="log" style="display:none;">
+    <div id="event-entries"></div>
+</div>
+<div class="btns">
+    <a href="#" id="view-events" onclick="showEvents()" aria-label="View Events">
+        <span>Reports</span>
+    </a>
+    <a href="#" id="log-events" onclick="showLogEvents()" style="display:none;" aria-label="Log Events">
+        <span>Events</span>
+    </a>
+    <a href="#" onclick="exportToExcel()" aria-label="Export to Excel">
+        <span>Export to Excel</span>
+    </a>
+</div>
+
+<script>
+function logTime(eventName, elementId) {
+    const now = new Date();
+    const date = now.toLocaleDateString('en-GB');
+    const time = now.toLocaleTimeString('en-GB');
+    const event = { date, time, eventName, value: '' };
+
+    let events = localStorage.getItem('events');
+    events = events ? JSON.parse(events) : [];
+    events.push(event);
+    localStorage.setItem('events', JSON.stringify(events));
+
+    document.getElementById(elementId).textContent = `Time ${time}`;
+}
+
+function logText(eventName, elementId, inputId) {
+    const now = new Date();
+    const date = now.toLocaleDateString('en-GB');
+    const time = now.toLocaleTimeString('en-GB');
+    const value = document.getElementById(inputId).value;
+    const event = { date, time, eventName, value };
+
+    let events = localStorage.getItem('events');
+    events = events ? JSON.parse(events) : [];
+    events.push(event);
+    localStorage.setItem('events', JSON.stringify(events));
+
+    document.getElementById(elementId).textContent = `Logged: ${value}`;
+}
+
+function showEvents() {
+    document.getElementById('button-container').style.display = 'none';
+    document.getElementById('events-log').style.display = 'block';
+    document.getElementById('view-events').style.display = 'none';
+    document.getElementById('log-events').style.display = 'block';
+
+    const eventsLog = document.getElementById('event-entries');
+    eventsLog.innerHTML = '';  // Clear previous logs
+
+    const storedEvents = localStorage.getItem('events');
+    if (storedEvents) {
+        const events = JSON.parse(storedEvents);
+        let currentDate = '';
+        events.forEach(event => {
+            if (event.date !== currentDate) {
+                const dateElement = document.createElement('h3');
+                dateElement.textContent = event.date;  // Display date
+                eventsLog.appendChild(dateElement);
+                currentDate = event.date;
+            }
+            const logEntry = document.createElement('p');
+            logEntry.textContent = `${event.time} - ${event.eventName} ${event.value}`;
+            eventsLog.appendChild(logEntry);
+        });
+    } else {
+        eventsLog.textContent = 'No events logged yet.';
+    }
+}
+
+function showLogEvents() {
+    document.getElementById('button-container').style.display = 'block';
+    document.getElementById('events-log').style.display = 'none';
+    document.getElementById('view-events').style.display = 'block';
+    document.getElementById('log-events').style.display = 'none';
+}
+
+async function exportToExcel() {
+    const storedEvents = localStorage.getItem('events');
+    if (!storedEvents) {
+        alert('No events logged yet.');
+        return;
+    }
+
+    const events = JSON.parse(storedEvents);
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Events Log');
+
+    // Define headers
+    worksheet.getCell('A1').value = 'Event Name';
+    const eventNames = ['Arrived time', 'Tilak', 'Chandalo', 'Dhyan', 'Mala', 'Thal', 'Prasadi', 'Thakorji', 'Darshan', 'Sikshapatri'];
+    eventNames.forEach((name, index) => {
+        worksheet.getCell(`A${index + 2}`).value = name;
+    });
+
+    // Add headers for the text areas
+    worksheet.getCell('A12').value = 'Thakorji Vagha and Sihasahn';
+    worksheet.getCell('A13').value = 'Which Kirtan Sung';
+    worksheet.getCell('A14').value = 'Special Notes';
+
+    // Prepare data to be grouped by date
+    const dateToEvents = {};
+    events.forEach(event => {
+        if (!dateToEvents[event.date]) {
+            dateToEvents[event.date] = {};
+        }
+        dateToEvents[event.date][event.eventName.trim()] = event.value || event.time;
+    });
+
+    // Add events to the worksheet by date
+    let colIndex = 1; // Start with column B
+    Object.keys(dateToEvents).forEach(date => {
+        worksheet.getCell(`${String.fromCharCode(65 + colIndex)}1`).value = date; // Set the date in the first row
+        eventNames.forEach((name, rowIndex) => {
+            const cell = worksheet.getCell(`${String.fromCharCode(65 + colIndex)}${rowIndex + 2}`);
+            cell.value = dateToEvents[date][name] || ''; // Set the value in corresponding rows
+        });
+        // Add text area data to the worksheet
+        worksheet.getCell(`${String.fromCharCode(65 + colIndex)}12`).value = dateToEvents[date]['Thakorji Vagha and Sihasahn'] || '';
+        worksheet.getCell(`${String.fromCharCode(65 + colIndex)}13`).value = dateToEvents[date]['Which Kirtan Sung'] || '';
+        worksheet.getCell(`${String.fromCharCode(65 + colIndex)}14`).value = dateToEvents[date]['Special Notes'] || '';
+
+        colIndex++;
+    });
+
+    // Apply header styles
+    worksheet.getRow(1).eachCell(cell => {
+        cell.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: { argb: 'FF0070C0' }  // Blue, Accent 1, Darker 25%
+        };
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        cell.font = { bold: true, color: { argb: 'FFFFFFFF' } };  // White text
+    });
+
+    // Apply row styles for the first column (event names)
+    worksheet.getColumn(1).eachCell((cell, rowNumber) => {
+        if (rowNumber > 1) {
+            cell.fill = {
+                type: 'pattern',
+                pattern: 'solid',
+                fgColor: { argb: 'FFDDEBF7' }  // Dark Blue, Text 2, Lighter 80%
+            };
+            cell.alignment = { vertical: 'middle', horizontal: 'center' };
+        }
+    });
+
+    // Adjust column widths
+    worksheet.columns = [
+        { key: 'eventName', width: 30 },
+        ...Array(colIndex - 1).fill({ width: 20 })
+    ];
+
+    // Generate Excel file and download
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `Events_Log_${new Date().toLocaleDateString('en-GB')}.xlsx`;
+    link.click();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+body {
+    font-family: "Lexend", sans-serif;
+    margin: 0;
+    padding: 20px 20px 40px 20px;
+    background-color: #fcffef;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+}
+
+h2, h3 {
+    text-align: center;
+    color: #070857;
+    margin-top: 30px;
+}
+
+div {
+    text-align: center;
+}
+
+.btns {
+    background-image: linear-gradient(25deg, #007ae6, #1b97eb, #1cb5f0, #00d4f4);
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+button {
+    font-family: "Lexend", sans-serif;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s;
+    background-image: linear-gradient(25deg, #0018cf, #2044d8, #2667e1, #1a88ea);
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.log {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.log h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: #007BFF;
+}
+
+.log p {
+    font-size: 1.2em;
+    margin-top: 5px;
+    color: #555;
+}
+
+textarea {
+    height: 100px;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px 0;
+    border-radius: 5px;
+    resize: none;
+    font-family: "Lexend", sans-serif;
+}
+
+.textarea-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
