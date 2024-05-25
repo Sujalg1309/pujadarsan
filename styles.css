@@ -1,7 +1,5 @@
 body {
     font-family: "Lexend", sans-serif;
-    margin: 0;
-    padding: 20px 20px 40px 20px;
     background-color: #fcffef;
     display: flex;
     flex-direction: column;
@@ -9,6 +7,16 @@ body {
     text-align: center;
     align-content: center;
     justify-content: center;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-image: url('BG.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 h2, h3 {
@@ -24,12 +32,13 @@ div {
 .btns {
     background-color: #2667e1;
     display: flex;
-    width: 100%;
-    height: 20px;
+    margin: 0;
+    width: 120%;
+    height: 30px;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 10px 0;
+    padding: 10px;
 }
 
 a {
