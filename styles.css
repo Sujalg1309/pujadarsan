@@ -11,13 +11,12 @@ body {
     justify-content: center;
 }
 
+
 img {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 90px;
     background-image: url('BG.jpg');
-    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -89,7 +88,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #026e67;
 }
 
 .log {
