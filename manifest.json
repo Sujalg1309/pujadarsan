@@ -20,12 +20,6 @@
     "display": "standalone",
     "background_color": "#fcffef",
     "theme_color": "#2667e1",
-    "orientation": "portrait",
-    "scope": "/",
-    "prefer_related_applications": false,
-    "related_applications": [],
-    "categories": ["Tracking events"],
-    "lang": "en",
-    "dir": "ltr"
+    "orientation": "portrait"
   }
   
