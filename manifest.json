@@ -1,0 +1,29 @@
+ {
+    "name": "Puja Darshan App",
+    "short_name": "Puja Darshan",
+    "description": "Track and log activities related to the Puja Darshan ceremony.",
+    "icons": [
+      {
+        "src": "H.H-MS.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "H.H-MS.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/Index.html",
+    "display": "standalone",
+    "background_color": "#fcffef",
+    "theme_color": "#2667e1",
+    "orientation": "portrait",
+    "scope": "/",
+    "prefer_related_applications": false,
+    "related_applications": [],
+    "categories": ["Tracking events"],
+    "lang": "en",
+    "dir": "ltr"
+  }
+  
