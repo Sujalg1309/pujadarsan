@@ -1,4 +1,6 @@
 body {
+    overscroll-behavior: none;
+    touch-action: auto;
     font-family: "Lexend", sans-serif;
     background-color: #fff6e5;
     margin: 0;
