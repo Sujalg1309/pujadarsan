@@ -4,7 +4,7 @@
     "description": "Track and log activities related to the Puja Darshan ceremony.",
     "icons": [
       {
-        "src": "H.H-MS.png",
+        "src": "msp.png",
         "sizes": "192x192",
         "type": "image/png"
       },
