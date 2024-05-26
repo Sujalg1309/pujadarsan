@@ -12,7 +12,12 @@
         "src": "H.H-MS.png",
         "sizes": "512x512",
         "type": "image/png"
-      }
+      },
+    {
+      "src": "thakorji.png",
+      "sizes": "100x100",
+      "type": "image/png"
+    }
     ],
     "start_url": "Index.html",
     "display": "standalone",
