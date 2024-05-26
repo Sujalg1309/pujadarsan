@@ -234,49 +234,55 @@ async function exportToExcel() {
     link.click();
 }
 </script>
-     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js')
-                .then(registration => {
-                    console.log('Service worker registration successful:', registration);
-                })
-                .catch(err => {
-                    console.log('Service worker registration failed:', err);
-                });
-        }
-
-        window.addEventListener('beforeinstallprompt', function(event) {
-            event.preventDefault();
-            showInstallPrompt(event);
-        });
-
-        function showInstallPrompt(event) {
-            const installButton = document.getElementById('install-button');
-            installButton.addEventListener('click', function() {
-                event.prompt();
-                event.userChoice.then(function(choiceResult) {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    } else {
-                        console.log('User dismissed the install prompt');
-                    }
-                });
-            });
-        }
-         self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open('my-cache').then(function(cache) {
-      return cache.addAll([
-        '/',
-        '/index.html',
-        '/msp.png',
-        '/H.H-MS.png',
-        '/splash-screen-image.png'
-      ]);
+    <script>
+         if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then(registration => {
+      console.log('Service worker registration successful:', registration);
     })
-  );
+    .catch(err => {
+      console.log('Service worker registration failed:', err);
+    });
+}
+
+// Check if the browser supports service workers
+if ('serviceWorker' in navigator) {
+  // Register the service worker
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(function(registration) {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch(function(error) {
+      console.error('Service Worker registration failed:', error);
+    });
+}
+
+// Check if the browser supports PWA installation
+window.addEventListener('beforeinstallprompt', function(event) {
+  // Prevent the default browser install prompt
+  event.preventDefault();
+  // Show your custom install prompt
+  // You might show a button or other UI element to trigger this
+  showInstallPrompt(event);
 });
 
-    </script>
+function showInstallPrompt(event) {
+  // Show your custom install prompt here
+  // For example, display a button to install the app
+  const installButton = document.getElementById('install-button');
+  installButton.addEventListener('click', function() {
+    // Trigger the browser's install prompt
+    event.prompt();
+    // Wait for the user to respond to the prompt
+    event.userChoice.then(function(choiceResult) {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+    });
+  });
+}
+         </script>
 </body>
 </html>
